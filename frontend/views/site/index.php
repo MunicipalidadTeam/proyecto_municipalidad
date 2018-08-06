@@ -7,9 +7,9 @@ $this->title = ' Municipalidad Ñiquén';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>Proyecto YII</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">cambio de portada</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
