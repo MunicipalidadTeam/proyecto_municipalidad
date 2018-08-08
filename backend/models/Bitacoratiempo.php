@@ -38,10 +38,12 @@ class Bitacoratiempo extends \yii\db\ActiveRecord
     {
         return [
             [['Fecha', 'HoraInicio', 'HoraFinal', 'Interrupcion'], 'safe'],
-            [['Total'], 'number'],
+            [['Fecha'],'date','format'=>'dd-MM-yyyy'],
+            [['HoraInicio','HoraFinal'],'date','format' =>'hh:mm a'],
+            ['Interrupcion','match','pattern'=>'/[0-9][0-9]:[0-5][0-9]/','message'=>'Indique en formato hh:mm'],
             [['idActividadPlaneada', 'idProyecto', 'idUsuario'], 'integer'],
             [['ActividadNoPlaneada', 'Artefacto'], 'string', 'max' => 250],
-            [['idProyecto'], 'exist', 'skipOnError' => true, 'targetClass' => Proyecto::className(), 'targetAttribute' => ['idProyecto' => 'idProyecto']],
+            [['Fecha', 'HoraInicio', 'HoraFinal','Interrupcion','Artefacto'], 'required','message'=>'Campo requerido'],
         ];
     }
 

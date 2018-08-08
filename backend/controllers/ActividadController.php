@@ -67,7 +67,8 @@ class ActividadController extends Controller
         $model = new Actividad();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idActividad]);
+            //return $this->redirect(['view', 'id' => $model->idActividad]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -87,7 +88,8 @@ class ActividadController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idActividad]);
+            //return $this->redirect(['view', 'id' => $model->idActividad]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

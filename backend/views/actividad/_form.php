@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
+use backend\models\Proyecto;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Actividad */
 /* @var $form yii\widgets\ActiveForm */
@@ -14,9 +15,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NombreActividad')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Activo')->textInput() ?>
+    <?php
+      if (!$model->isNewRecord) {
+        echo $form -> field($model,'Activo')->checkbox();
+      }
+     ?>
+     <?php
+      $proyecto = ArrayHelper::map(Proyecto::find()->where(['Activo'=>1])->orderby('NombreProyecto')->all(),'idProyecto','NombreProyecto');
+      ?>
 
-    <?= $form->field($model, 'idProyecto')->textInput() ?>
+    <?= $form->field($model, 'idProyecto')->dropDownList($proyecto) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

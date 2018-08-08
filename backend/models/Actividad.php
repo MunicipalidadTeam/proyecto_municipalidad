@@ -30,10 +30,10 @@ class Actividad extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Activo', 'idProyecto'], 'integer'],
+            [['Activo',],'boolean'],
+            [['idProyecto'],'integer'],
             [['NombreActividad'], 'string', 'max' => 200],
-            [['NombreActividad'], 'unique'],
-            [['idProyecto'], 'exist', 'skipOnError' => true, 'targetClass' => Proyecto::className(), 'targetAttribute' => ['idProyecto' => 'idProyecto']],
+            [['NombreActividad'], 'required']
         ];
     }
 
@@ -56,5 +56,12 @@ class Actividad extends \yii\db\ActiveRecord
     public function getProyecto()
     {
         return $this->hasOne(Proyecto::className(), ['idProyecto' => 'idProyecto']);
+    }
+    public function beforeSave($insert){
+      parent::beforeSave($insert);
+      if ($insert) {
+        $this->Activo =1;
+      }
+      return true;
     }
 }

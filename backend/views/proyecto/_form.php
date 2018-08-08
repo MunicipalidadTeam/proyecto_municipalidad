@@ -14,7 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NombreProyecto')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Activo')->textInput() ?>
+    <?php
+      if (!$model->isNewRecord) 
+        echo $form -> field($model,'Activo')->checkbox();
+
+     ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

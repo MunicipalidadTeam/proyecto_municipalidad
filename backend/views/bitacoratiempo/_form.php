@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
+use backend\models\Proyecto;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Bitacoratiempo */
 /* @var $form yii\widgets\ActiveForm */
@@ -20,17 +21,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Interrupcion')->textInput() ?>
 
-    <?= $form->field($model, 'Total')->textInput() ?>
+  
 
     <?= $form->field($model, 'ActividadNoPlaneada')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'idActividadPlaneada')->textInput() ?>
 
-    <?= $form->field($model, 'idProyecto')->textInput() ?>
+
+    <?php
+     $proyecto = ArrayHelper::map(Proyecto::find()->where(['Activo'=>1])->orderby('NombreProyecto')->all(),'idProyecto','NombreProyecto');
+     ?>
+
+   <?= $form->field($model, 'idProyecto')->dropDownList($proyecto) ?>
 
     <?= $form->field($model, 'Artefacto')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'idUsuario')->textInput() ?>
+
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

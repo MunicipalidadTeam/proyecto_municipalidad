@@ -33,6 +33,7 @@ class Proyecto extends \yii\db\ActiveRecord
             [['Activo'], 'integer'],
             [['NombreProyecto'], 'string', 'max' => 200],
             [['NombreProyecto'], 'unique'],
+            [['NombreProyecto'],'required']
         ];
     }
 
@@ -62,5 +63,13 @@ class Proyecto extends \yii\db\ActiveRecord
     public function getBitacoratiempos()
     {
         return $this->hasMany(Bitacoratiempo::className(), ['idProyecto' => 'idProyecto']);
+    }
+    //evento del modelo beforesave, pone el campo activo en 1 cuando se está insertando
+    public function beforeSave($insert){
+      parent::beforeSave($insert);
+      if ($insert) {
+        $this->Activo =1;
+      }
+      return true;
     }
 }
