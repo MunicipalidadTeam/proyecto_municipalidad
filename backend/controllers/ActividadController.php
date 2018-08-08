@@ -1,18 +1,18 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use Yii;
-use frontend\models\Usuario;
-use frontend\models\UsuarioSearch;
+use backend\models\Actividad;
+use backend\models\search\ActividadSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UsuarioController implements the CRUD actions for Usuario model.
+ * ActividadController implements the CRUD actions for Actividad model.
  */
-class UsuarioController extends Controller
+class ActividadController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Lists all Usuario models.
+     * Lists all Actividad models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UsuarioSearch();
+        $searchModel = new ActividadSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Displays a single Usuario model.
+     * Displays a single Actividad model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Creates a new Usuario model.
+     * Creates a new Actividad model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Usuario();
+        $model = new Actividad();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_Usuario]);
+            return $this->redirect(['view', 'id' => $model->idActividad]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Updates an existing Usuario model.
+     * Updates an existing Actividad model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class UsuarioController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_Usuario]);
+            return $this->redirect(['view', 'id' => $model->idActividad]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Deletes an existing Usuario model.
+     * Deletes an existing Actividad model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,18 +110,18 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Finds the Usuario model based on its primary key value.
+     * Finds the Actividad model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Usuario the loaded model
+     * @return Actividad the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Usuario::findOne($id)) !== null) {
+        if (($model = Actividad::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

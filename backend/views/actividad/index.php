@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\UsuarioSearch */
+/* @var $searchModel backend\models\search\ActividadSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Usuarios';
+$this->title = Yii::t('app', 'Actividads');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="usuario-index">
+<div class="actividad-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Actividad'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,11 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_Usuario',
-            'nombreCompleto',
-            'Login',
-            'Password',
-            'Activo:boolean',
+            'idActividad',
+            'NombreActividad',
+            'Activo',
+            'idProyecto',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

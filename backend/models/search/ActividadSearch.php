@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace backend\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Usuario;
+use backend\models\Actividad;
 
 /**
- * UsuarioSearch represents the model behind the search form of `frontend\models\Usuario`.
+ * ActividadSearch represents the model behind the search form of `backend\models\Actividad`.
  */
-class UsuarioSearch extends Usuario
+class ActividadSearch extends Actividad
 {
     /**
      * {@inheritdoc}
@@ -18,9 +18,8 @@ class UsuarioSearch extends Usuario
     public function rules()
     {
         return [
-            [['id_Usuario'], 'integer'],
-            [['nombreCompleto', 'Login', 'Password'], 'safe'],
-            [['Activo'], 'boolean'],
+            [['idActividad', 'Activo', 'idProyecto'], 'integer'],
+            [['NombreActividad'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class UsuarioSearch extends Usuario
      */
     public function search($params)
     {
-        $query = Usuario::find();
+        $query = Actividad::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +59,12 @@ class UsuarioSearch extends Usuario
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_Usuario' => $this->id_Usuario,
+            'idActividad' => $this->idActividad,
             'Activo' => $this->Activo,
+            'idProyecto' => $this->idProyecto,
         ]);
 
-        $query->andFilterWhere(['like', 'nombreCompleto', $this->nombreCompleto])
-            ->andFilterWhere(['like', 'Login', $this->Login])
-            ->andFilterWhere(['like', 'Password', $this->Password]);
+        $query->andFilterWhere(['like', 'NombreActividad', $this->NombreActividad]);
 
         return $dataProvider;
     }
