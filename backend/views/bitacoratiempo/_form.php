@@ -21,11 +21,7 @@ use backend\models\Proyecto;
 
     <?= $form->field($model, 'Interrupcion')->textInput() ?>
 
-  
-
     <?= $form->field($model, 'ActividadNoPlaneada')->textInput(['maxlength' => true]) ?>
-
-
 
     <?php
      $proyecto = ArrayHelper::map(Proyecto::find()->where(['Activo'=>1])->orderby('NombreProyecto')->all(),'idProyecto','NombreProyecto');
