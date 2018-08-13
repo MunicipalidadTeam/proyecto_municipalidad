@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\search\ActividadSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Actividads');
+$this->title = Yii::t('app', 'Actividades');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="actividad-index">

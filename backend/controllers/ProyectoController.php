@@ -8,6 +8,8 @@ use backend\models\search\ProyectoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 /**
  * ProyectoController implements the CRUD actions for Proyecto model.
@@ -20,6 +22,16 @@ class ProyectoController extends Controller
     public function behaviors()
     {
         return [
+          'access' =>[
+              'class' => AccessControl::className(),
+              'rules' => [
+                [
+                  'actions' => ['index','view','create','delete','update'],
+                  'allow' => true,
+                  'roles' => ['@'],
+                ],
+              ],
+          ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

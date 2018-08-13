@@ -29,13 +29,13 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Administrador municipal',
+        'brandLabel' => 'Sistema de Decretos de la Municipal de Ñiquén',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    
+
     NavBar::end();
     ?>
 
