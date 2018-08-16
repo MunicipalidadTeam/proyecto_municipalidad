@@ -17,16 +17,6 @@ use yii\jui\DatePicker;
 
     <?= $form->field($model, 'numeroDecreto')->textInput() ?>
 
-    <?php //= $form->field($model, 'fechaDeEnvio')->textInput() ?>
-    <?= $form->field($model,'fechaDeEnvio')->widget(
-        DatePicker::className(),[
-          'language' => 'es',
-          'options' =>['class'=>'form-control'],
-          'clientOptions' => [
-          //'defaultDate' => '2014-01-01'
-          'minDate' =>'-3w',
-            ]])
-      ?>
     <?php //= $form->field($model, 'fechaDecreto')->textInput() ?>
     <?= $form->field($model,'fechaDecreto')->widget(
         DatePicker::className(),[
@@ -37,23 +27,11 @@ use yii\jui\DatePicker;
           'minDate' =>'-3w',
             ]])
       ?>
-
     <?= $form->field($model, 'proveedor')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'monto')->textInput() ?>
 
-    <?= $form->field($model, 'cuenta')->dropDownList(['JUNJI' => 'JUNJI','FAE' => 'FAE']) ?>
-
-    <?php //= $form->field($model, 'fechaRecepcion')->textInput() ?>
-    <?= $form->field($model,'fechaRecepcion')->widget(
-        DatePicker::className(),[
-          'language' => 'es',
-          'options' =>['class'=>'form-control'],
-          'clientOptions' => [
-          //'defaultDate' => '2014-01-01'
-          'minDate' =>'-3w',
-            ]])
-      ?>
+    <?= $form->field($model, 'cuenta')->dropDownList(['JUNJI' => 'JUNJI','FAE' => 'FAE','SEP' => 'SEP','PRORETENCION' => 'PRORETENCION','MANTENIMIENTO' => 'MANTENIMIENTO']) ?>
 
     <?php //= $form->field($model, 'id')->textInput() ?>
 

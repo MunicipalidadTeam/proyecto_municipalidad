@@ -16,6 +16,7 @@ use Yii;
  * @property string $cuenta
  * @property string $fechaRecepcion
  * @property int $id
+ * @property string $estado
  */
 class Decreto extends \yii\db\ActiveRecord
 {
@@ -33,9 +34,9 @@ class Decreto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_Decreto', 'numeroDecreto', 'fechaDeEnvio', 'fechaDecreto', 'proveedor', 'monto', 'cuenta', 'fechaRecepcion', 'id'], 'required'],
+            [['numeroDecreto', 'fechaDecreto', 'proveedor', 'monto', 'cuenta'], 'required'],
             [['id_Decreto', 'numeroDecreto', 'id'], 'integer'],
-            [['fechaDeEnvio', 'fechaDecreto', 'fechaRecepcion'], 'safe'],
+            [['fechaDeEnvio', 'fechaDecreto', 'fechaRecepcion','estado'], 'safe'],
             [['monto'], 'number'],
             [['proveedor', 'cuenta'], 'string', 'max' => 100],
             [['id_Decreto'], 'unique'],
@@ -57,6 +58,8 @@ class Decreto extends \yii\db\ActiveRecord
             'cuenta' => Yii::t('app', 'Cuenta'),
             'fechaRecepcion' => Yii::t('app', 'Fecha Recepcion'),
             'id' => Yii::t('app', 'ID'),
+            'estado' => Yii::t('app', 'Estado'),
+
         ];
     }
 }

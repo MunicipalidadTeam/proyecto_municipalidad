@@ -40,6 +40,7 @@ AppAsset::register($this);
         ['label' => 'Proyectos', 'url' => ['/proyecto/index']],
         ['label' => 'Actividades', 'url' => ['/actividad/index']],
         ['label' => 'Bitacora de tiempos', 'url' => ['/bitacoratiempo/index']],
+        ['label' => 'Decreto', 'url' => ['/decreto/index']],
 
     ];
     if (Yii::$app->user->isGuest) {

@@ -25,7 +25,7 @@ class DecretoController extends Controller
               'class' => AccessControl::className(),
               'rules' => [
                 [
-                  'actions' => ['index','view','create','delete','update'],
+                  'actions' => ['index','view','create','delete','admin','update'],
                   'allow' => true,
                   'roles' => ['@'],
                 ],
@@ -97,11 +97,30 @@ class DecretoController extends Controller
     {
         $model = $this->findModel($id);
 
+        if ($model->load(Yii::$app->request->post())){
+            if($model->estado=='TERMINADO'){
+              $model->fechaRecepcion=date("Y-m-d H:i:s");
+                if($model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_Decreto]);
+            }
+          }
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+
+    public function actionAdmin($id)
+    {
+        $model = $this->findModel($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_Decreto]);
         }
 
-        return $this->render('update', [
+        return $this->render('admin', [
             'model' => $model,
         ]);
     }
