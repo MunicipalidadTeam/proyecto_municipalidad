@@ -20,6 +20,7 @@ use yii\jui\DatePicker;
     <?php //= $form->field($model, 'fechaDecreto')->textInput() ?>
     <?= $form->field($model,'fechaDecreto')->widget(
         DatePicker::className(),[
+          'dateFormat' => 'yyyy-MM-dd',
           'language' => 'es',
           'options' =>['class'=>'form-control'],
           'clientOptions' => [

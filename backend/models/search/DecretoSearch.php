@@ -19,7 +19,7 @@ class DecretoSearch extends Decreto
     {
         return [
             [['id_Decreto', 'numeroDecreto', 'id'], 'integer'],
-            [['fechaDeEnvio', 'fechaDecreto', 'proveedor', 'cuenta', 'fechaRecepcion'], 'safe'],
+            [['fechaDeEnvio', 'fechaDecreto', 'proveedor', 'cuenta', 'fechaRecepcion','estado'], 'safe'],
             [['monto'], 'number'],
         ];
     }
@@ -67,6 +67,8 @@ class DecretoSearch extends Decreto
             'monto' => $this->monto,
             'fechaRecepcion' => $this->fechaRecepcion,
             'id' => $this->id,
+            'estado' => $this->estado,
+
         ]);
 
         $query->andFilterWhere(['like', 'proveedor', $this->proveedor])

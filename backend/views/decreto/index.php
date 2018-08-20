@@ -34,8 +34,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'cuenta',
            'fechaRecepcion',
             //'id',
-            'estado',
-
+            //'estado',
+            [
+              'attribute' => 'estado',
+              'format' => 'raw',
+              'value' => function($data){
+                return $data ->estado;
+              },
+              'filter'=>['PENDIENTE' => 'PENDIENTE','MUNICIPIO' => 'ENVIADO A MUNICIPIO','TERMINADO' => 'TERMINADO'],
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

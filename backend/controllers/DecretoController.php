@@ -97,12 +97,10 @@ class DecretoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())){
-            if($model->estado=='TERMINADO'){
-              $model->fechaRecepcion=date("Y-m-d H:i:s");
-                if($model->save()) {
+        if ($model->load(Yii::$app->request->post())&&$model->save()){
+          if($model->estado=='TERMINADO'){
+            $model->fechaRecepcion=date("Y-m-d H:i:s");
             return $this->redirect(['view', 'id' => $model->id_Decreto]);
-            }
           }
         }
 
