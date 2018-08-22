@@ -16,6 +16,7 @@ use yii\jui\DatePicker;
     <?php //=  $form->field($model, 'id_Decreto')->textInput() ?>
 
     <?php //= $form->field($model, 'fechaDeEnvio')->textInput() ?>
+<?php if($model->estado =='PENDIENTE'):?>
     <?= $form->field($model,'fechaDeEnvio')->widget(
         DatePicker::className(),[
           'dateFormat' => 'yyyy-MM-dd',
@@ -25,11 +26,16 @@ use yii\jui\DatePicker;
           //'defaultDate' => '2014-01-01',
           'minDate' =>'-3w',
             ]])
-      ?>
+            ?>
+     <?= $form->field($model, 'estado')->dropDownList(['MUNICIPIO' => 'ENVIADO A MUNICIPIO']) ?>
 
+    <?php endif;?>
     <?= $form->field($model, 'proveedor')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'cuenta')->dropDownList(['JUNJI' => 'JUNJI','FAE' => 'FAE','SEP' => 'SEP','PRORETENCION' => 'PRORETENCION','MANTENIMIENTO' => 'MANTENIMIENTO']) ?>
-    <?= $form->field($model, 'estado')->dropDownList(['PENDIENTE' => 'PENDIENTE','MUNICIPIO' => 'ENVIADO A MUNICIPIO','TERMINADO' => 'TERMINADO']) ?>
+    <?php if($model->estado =='MUNICIPIO'):?>
+      <?= $form->field($model, 'estado')->dropDownList(['TERMINADO' => 'TERMINADO']) ?>
+    <?php endif;?>
+
 
     <?php //= $form->field($model, 'id')->textInput() ?>
 

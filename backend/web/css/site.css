@@ -118,3 +118,9 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+/* centrar columna de busqueda de estado*/
+.col-centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

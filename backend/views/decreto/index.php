@@ -13,10 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="decreto-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Decreto'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Creación de Decreto'), ['create'], ['class' => 'btn btn-success']) ?>
+          <?= Html::a('Reset', ['index'], ['class' => 'btn btn-warning']); ?>
     </p>
 
     <?= GridView::widget([
@@ -27,23 +28,73 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_Decreto',
             'numeroDecreto',
-            'fechaDeEnvio',
-            'fechaDecreto',
+            //'fechaDeEnvio',
+            /*Hace la busqueda por fecha*/
+            [
+              'attribute' => 'fechaDeEnvio',
+              'label' => 'fecha',
+              'value' => 'fechaDeEnvio',
+              'filter' => \yii\jui\DatePicker::widget([
+              'model'=>$searchModel,
+              'attribute'=>'fechaDeEnvio',
+              'language' => 'es',
+              'dateFormat' => 'yyyy-MM-dd',
+              'options' => ['class'=>'form-control'],
+            ]),
+            'format' => 'html',
+          ],
+          [
+            'attribute' => 'fechaDecreto',
+            'value' => 'fechaDecreto',
+            'filter' => \yii\jui\DatePicker::widget([
+            'model'=>$searchModel,
+            'attribute'=>'fechaDecreto',
+            'language' => 'es',
+            'dateFormat' => 'yyyy-MM-dd',
+            'options' => ['class'=>'form-control'],
+          ]),
+          'format' => 'html',
+        ],
             'proveedor',
             'monto',
             'cuenta',
-           'fechaRecepcion',
+            [
+              'attribute' => 'fechaRecepcion',
+              'value' => 'fechaRecepcion',
+              'filter' => \yii\jui\DatePicker::widget([
+              'model'=>$searchModel,
+              'attribute'=>'fechaRecepcion',
+              'language' => 'es',
+              'dateFormat' => 'yyyy-MM-dd ',
+              'options' => ['class'=>'form-control'],
+            ]),
+          ],
             //'id',
             //'estado',
             [
               'attribute' => 'estado',
               'format' => 'raw',
               'value' => function($data){
-                return $data ->estado;
+                return Html::a($data->estado,'',['class'=>'col-centered '.$data->estadocolordecreto]);
               },
               'filter'=>['PENDIENTE' => 'PENDIENTE','MUNICIPIO' => 'ENVIADO A MUNICIPIO','TERMINADO' => 'TERMINADO'],
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                         'template'=>'{view}{update}',
+                          'buttons'=>[
+                          'view' => function ($url, $model) {
+                              return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                              'title' => Yii::t('yii', 'Ver'),
+                               ]);
+                             },
+                             'update' => function ($url, $model) {
+                               return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                              'title' => Yii::t('yii', 'Editar'),
+                               ]);
+              },
+            ]
+          ],
         ],
-    ]); ?>
+  ]);?>
 </div>

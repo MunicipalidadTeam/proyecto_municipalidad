@@ -62,7 +62,7 @@ class DecretoSearch extends Decreto
         $query->andFilterWhere([
             'id_Decreto' => $this->id_Decreto,
             'numeroDecreto' => $this->numeroDecreto,
-            'fechaDeEnvio' => $this->fechaDeEnvio,
+            'DATE(fechaDeEnvio)' => $this->fechaDeEnvio,
             'fechaDecreto' => $this->fechaDecreto,
             'monto' => $this->monto,
             'fechaRecepcion' => $this->fechaRecepcion,

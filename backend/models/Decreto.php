@@ -39,7 +39,7 @@ class Decreto extends \yii\db\ActiveRecord
             [['fechaDeEnvio', 'fechaDecreto', 'fechaRecepcion','estado'], 'safe'],
             [['monto'], 'number'],
             [['proveedor', 'cuenta'], 'string', 'max' => 100],
-            [['id_Decreto'], 'unique'],
+            [['id_Decreto','numeroDecreto'], 'unique'],
         ];
     }
 
@@ -61,5 +61,21 @@ class Decreto extends \yii\db\ActiveRecord
             'estado' => Yii::t('app', 'Estado'),
 
         ];
+    }
+    public function getEstadoColorDecreto(){
+      $estadocolordecreto = 'label';
+      switch ($this->estado) {
+        case 'PENDIENTE':
+          $estadocolordecreto = 'label label-success';
+          break;
+        case 'MUNICIPIO':
+          $estadocolordecreto = 'label label-warning';
+          break;
+        case 'TERMINADO':
+          $estadocolordecreto ='label label-danger';
+          break;
+
+      }
+      return $estadocolordecreto;
     }
 }
