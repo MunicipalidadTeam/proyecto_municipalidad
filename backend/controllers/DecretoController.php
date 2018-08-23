@@ -25,7 +25,7 @@ class DecretoController extends Controller
               'class' => AccessControl::className(),
               'rules' => [
                 [
-                  'actions' => ['index','view','create','delete','admin','update'],
+                  'actions' => ['index','view','create','delete','admin','update','exportar'],
                   'allow' => true,
                   'roles' => ['@'],
                 ],
@@ -53,6 +53,14 @@ class DecretoController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionExportar()
+    {
+        $model = Decreto::find()->all();
+      return $this->render('exportarExcel', [
+          'Model' => $model,
+      ]);
     }
 
     /**

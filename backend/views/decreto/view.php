@@ -38,5 +38,4 @@ $this->params['breadcrumbs'][] = $this->title;
             'estado',
         ],
     ]) ?>
-
 </div>
