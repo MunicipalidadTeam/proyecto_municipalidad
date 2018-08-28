@@ -8,6 +8,8 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    //propiedad name fue añadida para añadir con la propiedad yii::app el nombre como varibale global
+    'name'=>' Ñiquén',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
@@ -44,6 +46,15 @@ return [
             ],
         ],
         */
+
+        'urlManagerBackend' => [
+            'class' => 'yii\web\urlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'baseUrl' => 'http://localhost/municipalidad_Niquen/backend/web/',
+
+        ],
+
     ],
     'params' => $params,
 ];

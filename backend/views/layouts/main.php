@@ -37,9 +37,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Proyectos', 'url' => ['/proyecto/index']],
-        ['label' => 'Actividades', 'url' => ['/actividad/index']],
-        ['label' => 'Bitacora de tiempos', 'url' => ['/bitacoratiempo/index']],
+        ['label' => 'Usuarios', 'url' => ['/user/index']],
         ['label' => 'Decreto', 'url' => ['/decreto/index']],
 
     ];

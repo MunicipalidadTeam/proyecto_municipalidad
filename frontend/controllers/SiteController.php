@@ -12,6 +12,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\decretos;
+use backend\models\search\DecretoSearch;
 
 /**
  * Site controller
@@ -72,9 +74,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
-    }
 
+      return $this->render('index');
+    }
+    public function actionDecreto()
+    {
+      $searchModel = new DecretoSearch();
+      $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+      return $this->render('decretos', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+      ]);
+    }
     /**
      * Logs in a user.
      *
@@ -82,8 +94,9 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+        /*if (!Yii::$app->user->isGuest) {
+            //return $this->goHome();
+            return Yii::$app->getResponse()->redirect(array('/backend/site/login'));
         }
 
         $model = new LoginForm();
@@ -95,7 +108,8 @@ class SiteController extends Controller
             return $this->render('login', [
                 'model' => $model,
             ]);
-        }
+        }*/
+        return $this->redirect(Yii::$app->urlManagerBackend->createUrl(['']));
     }
 
     /**

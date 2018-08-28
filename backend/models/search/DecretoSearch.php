@@ -18,7 +18,7 @@ class DecretoSearch extends Decreto
     public function rules()
     {
         return [
-            [['id_Decreto', 'numeroDecreto', 'id'], 'integer'],
+            [['id_Decreto', 'numeroDecreto', 'id_user'], 'integer'],
             [['fechaDeEnvio', 'fechaDecreto', 'proveedor', 'cuenta', 'fechaRecepcion','estado'], 'safe'],
             [['monto'], 'number'],
         ];
@@ -66,7 +66,7 @@ class DecretoSearch extends Decreto
             'fechaDecreto' => $this->fechaDecreto,
             'monto' => $this->monto,
             'fechaRecepcion' => $this->fechaRecepcion,
-            'id' => $this->id,
+            'id_user' => $this->id_user,
             'estado' => $this->estado,
 
         ]);

@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Actividad;
-use backend\models\search\ActividadSearch;
+use backend\models\User;
+use backend\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+
 /**
- * ActividadController implements the CRUD actions for Actividad model.
+ * UserController implements the CRUD actions for User model.
  */
-class ActividadController extends Controller
+class UserController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -20,17 +20,6 @@ class ActividadController extends Controller
     public function behaviors()
     {
         return [
-            'access' =>[
-                'class' => AccessControl::className(),
-                'rules' => [
-                  [
-                    'actions' => ['index','view','create','delete','update'],
-                    'allow' => true,
-                    'roles' => ['@'],
-                  ],
-                ],
-            ],
-
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -41,12 +30,12 @@ class ActividadController extends Controller
     }
 
     /**
-     * Lists all Actividad models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ActividadSearch();
+        $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +45,7 @@ class ActividadController extends Controller
     }
 
     /**
-     * Displays a single Actividad model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -69,17 +58,16 @@ class ActividadController extends Controller
     }
 
     /**
-     * Creates a new Actividad model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Actividad();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idActividad]);
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -88,7 +76,7 @@ class ActividadController extends Controller
     }
 
     /**
-     * Updates an existing Actividad model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,8 +87,7 @@ class ActividadController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idActividad]);
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -109,7 +96,7 @@ class ActividadController extends Controller
     }
 
     /**
-     * Deletes an existing Actividad model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -123,15 +110,15 @@ class ActividadController extends Controller
     }
 
     /**
-     * Finds the Actividad model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Actividad the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Actividad::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 

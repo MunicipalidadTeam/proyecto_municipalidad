@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -29,20 +30,23 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => "Municipalidad de Ñiquén",
+        'brandLabel' => Html::img('@web/Imagenes/logo.png', ['alt'=>Yii::$app->name, 'class'=>'logo']).' '.Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+      //acá va al controlador para tomar alguna accion del controlador en este caso de site controller
+        ['label' => 'Inicio', 'url' => ['/site/index']],
+        ['label' => 'Que es?', 'url' => ['/site/about']],
+        ['label' => 'Contacto', 'url' => ['/site/contact']],
+        ['label' => 'Documentos', 'url' => ['/site/decreto']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => ' <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Acceso al sistema',
+                        'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
@@ -55,6 +59,7 @@ AppAsset::register($this);
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels'=>false, // encodeLabels ayuda a no tomar como un texto simple el atributo html implementado
         'items' => $menuItems,
     ]);
     NavBar::end();

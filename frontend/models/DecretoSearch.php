@@ -5,12 +5,12 @@ namespace backend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Actividad;
+use backend\models\Decreto;
 
 /**
- * ActividadSearch represents the model behind the search form of `backend\models\Actividad`.
+ * DecretoSearch represents the model behind the search form of `backend\models\Decreto`.
  */
-class ActividadSearch extends Actividad
+class DecretoSearch extends Decreto
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,9 @@ class ActividadSearch extends Actividad
     public function rules()
     {
         return [
-            [['idActividad', 'Activo', 'idProyecto'], 'integer'],
-            [['NombreActividad'], 'safe'],
+            [['id_Decreto', 'numeroDecreto', 'id_user'], 'integer'],
+            [['fechaDeEnvio', 'fechaDecreto', 'proveedor', 'cuenta', 'fechaRecepcion','estado'], 'safe'],
+            [['monto'], 'number'],
         ];
     }
 
@@ -41,7 +42,7 @@ class ActividadSearch extends Actividad
      */
     public function search($params)
     {
-        $query = Actividad::find();
+        $query = Decreto::find();
 
         // add conditions that should always apply here
 
@@ -59,12 +60,19 @@ class ActividadSearch extends Actividad
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idActividad' => $this->idActividad,
-            'Activo' => $this->Activo,
-            'idProyecto' => $this->idProyecto,
+            'id_Decreto' => $this->id_Decreto,
+            'numeroDecreto' => $this->numeroDecreto,
+            'DATE(fechaDeEnvio)' => $this->fechaDeEnvio,
+            'fechaDecreto' => $this->fechaDecreto,
+            'monto' => $this->monto,
+            'fechaRecepcion' => $this->fechaRecepcion,
+            'id_user' => $this->id_user,
+            'estado' => $this->estado,
+
         ]);
 
-        $query->andFilterWhere(['like', 'NombreActividad', $this->NombreActividad]);
+        $query->andFilterWhere(['like', 'proveedor', $this->proveedor])
+            ->andFilterWhere(['like', 'cuenta', $this->cuenta]);
 
         return $dataProvider;
     }
