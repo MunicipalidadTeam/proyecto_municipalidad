@@ -36,9 +36,12 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Usuarios', 'url' => ['/user/index']],
-        ['label' => 'Decreto', 'url' => ['/decreto/index']],
+        ['label' => '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio',
+        'url' => ['/site/index']],
+        ['label' => '  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios',
+        'url' => ['/user/index']],
+        ['label' => ' <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Decreto',
+        'url' => ['/decreto/index']],
 
     ];
     if (Yii::$app->user->isGuest) {
@@ -48,7 +51,7 @@ AppAsset::register($this);
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Salir (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -56,6 +59,7 @@ AppAsset::register($this);
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels'=>false,
         'items' => $menuItems,
     ]);
     NavBar::end();
