@@ -38,10 +38,14 @@ AppAsset::register($this);
     ]);
     $menuItems = [
       //acá va al controlador para tomar alguna accion del controlador en este caso de site controller
-        ['label' => 'Inicio', 'url' => ['/site/index']],
-        ['label' => 'Que es?', 'url' => ['/site/about']],
-        ['label' => 'Contacto', 'url' => ['/site/contact']],
-        ['label' => 'Documentos', 'url' => ['/site/decreto']],
+        ['label' => ' <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio',
+        'url' => ['/site/index']],
+        ['label' => '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> ¿Que es?',
+        'url' => ['/site/about']],
+        ['label' => '<span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span> Contacto',
+        'url' => ['/site/contact']],
+        ['label' => '<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Documentos',
+        'url' => ['/site/decreto']],
     ];
     if (Yii::$app->user->isGuest) {
         //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

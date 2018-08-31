@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\User;
+use backend\models\SignupForm;
 use backend\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -62,7 +63,7 @@ class UserController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    /*public function actionCreate()
     {
         $model = new User();
 
@@ -73,7 +74,23 @@ class UserController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+    }*/
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
+
 
     /**
      * Updates an existing User model.

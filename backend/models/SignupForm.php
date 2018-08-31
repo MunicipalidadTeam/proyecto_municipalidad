@@ -1,5 +1,5 @@
 <?php
-namespace frontend\models;
+namespace backend\models;
 
 use yii\base\Model;
 use common\models\User;
@@ -12,7 +12,9 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
-
+    public $telefono;
+    public $perfil;
+    public $estado;
 
     /**
      * {@inheritdoc}
@@ -33,6 +35,11 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['telefono','required'],
+
+            ['estado', 'required'],
+            ['perfil' , 'required',]
         ];
     }
 
@@ -46,13 +53,16 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
+        $user->telefono = $this->telefono;
+        $user->perfil = $this->perfil;
+        $user->estado = $this->estado;
+
         return $user->save() ? $user : null;
     }
 }
